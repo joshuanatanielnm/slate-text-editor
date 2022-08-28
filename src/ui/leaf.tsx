@@ -14,6 +14,9 @@ export const Leaf = ({ attributes, children, leaf }: any) => {
   if (leaf.sup) {
     children = <sup>{children}</sup>;
   }
+  if (leaf.strikethrough) {
+    children = <s>{children}</s>;
+  }
 
   return <span {...attributes}>{children}</span>;
 };

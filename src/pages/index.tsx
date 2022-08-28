@@ -23,6 +23,7 @@ import {
   LooksTwo,
   FormatListNumbered,
   Looks3,
+  StrikethroughS,
 } from "@emotion-icons/material";
 import {
   FormatAlignCenter,
@@ -83,6 +84,10 @@ const Home: NextPage = () => {
               <MarkButton
                 format="underline"
                 icon={<FormatUnderlined size={25} />}
+              />
+              <MarkButton
+                format="strikethrough"
+                icon={<StrikethroughS size={25} />}
               />
               <MarkButton format="code" icon={<Code size={25} />} />
               <MarkButton format="sup" icon={<Superscript size={25} />} />
