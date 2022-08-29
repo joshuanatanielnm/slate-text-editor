@@ -1,24 +1,15 @@
-type CodeElementProps = {
-  style: {
-    textAlign: "center" | "left" | "right" | "justify";
-  };
-  attributes: {
-    "data-slate-node": "element";
-    "data-slate-inline"?: true;
-    "data-slate-void"?: true;
-    dir?: "rtl";
-    ref: any;
-  };
-  children: JSX.Element;
-};
+import { CustomElementProps } from "../types";
 
 export const CodeElement = ({
   attributes,
   children,
   style,
-}: CodeElementProps) => {
+}: CustomElementProps) => {
   return (
-    <pre {...attributes} style={{ ...style, background: "#f0f3f9" }}>
+    <pre
+      {...attributes}
+      style={{ ...style, background: "#091D42", color: "white" }}
+    >
       <code>{children}</code>
     </pre>
   );
