@@ -5,11 +5,18 @@ import {
   Text,
   UnorderedList,
 } from "@chakra-ui/react";
+import { Blockquote } from "./blockquote";
 import { CodeElement } from "./code";
 
 export const Element = ({ attributes, children, element }: any) => {
   const style = { textAlign: element.align };
   switch (element.type) {
+    case "block-quote":
+      return (
+        <Blockquote style={style} {...attributes}>
+          {children}
+        </Blockquote>
+      );
     case "bulleted-list":
       return (
         <UnorderedList style={style} {...attributes}>

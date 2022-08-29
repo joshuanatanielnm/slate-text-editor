@@ -24,6 +24,7 @@ import {
   FormatListNumbered,
   Looks3,
   StrikethroughS,
+  FormatQuote,
 } from "@emotion-icons/material";
 import {
   FormatAlignCenter,
@@ -98,6 +99,10 @@ const Home: NextPage = () => {
               <BlockButton format="heading-one" icon={<LooksOne size={25} />} />
               <BlockButton format="heading-two" icon={<LooksTwo size={25} />} />
               <BlockButton format="heading-three" icon={<Looks3 size={25} />} />
+              <BlockButton
+                format="block-quote"
+                icon={<FormatQuote size={25} />}
+              />
               <BlockButton
                 format="numbered-list"
                 icon={<FormatListNumbered size={25} />}
