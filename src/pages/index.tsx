@@ -14,28 +14,8 @@ import { withHistory } from "slate-history";
 import { BlockButton, Element, Leaf, MarkButton } from "../ui";
 import { HOTKEYS } from "../constants";
 import { toggleMark } from "../utlis";
-import {
-  FormatBold,
-  FormatItalic,
-  FormatUnderlined,
-  Code,
-  LooksOne,
-  LooksTwo,
-  FormatListNumbered,
-  Looks3,
-  StrikethroughS,
-  FormatQuote,
-} from "@emotion-icons/material";
-import {
-  FormatAlignCenter,
-  FormatAlignJustify,
-  FormatAlignLeft,
-  FormatAlignRight,
-  FormatListBulleted,
-  Superscript,
-} from "emotion-icons/material";
 import { Container, Heading, Text, VStack, Wrap } from "@chakra-ui/react";
-import { CodeSquare } from "emotion-icons/bootstrap";
+import { Feature } from "../constants";
 
 type DynamicType = {
   [key: string]: string;
@@ -80,50 +60,13 @@ const Home: NextPage = () => {
               marginBottom={4}
               marginTop={4}
             >
-              <MarkButton format="bold" icon={<FormatBold size={25} />} />
-              <MarkButton format="italic" icon={<FormatItalic size={25} />} />
-              <MarkButton
-                format="underline"
-                icon={<FormatUnderlined size={25} />}
-              />
-              <MarkButton
-                format="strikethrough"
-                icon={<StrikethroughS size={25} />}
-              />
-              <MarkButton format="code" icon={<Code size={25} />} />
-              <MarkButton format="sup" icon={<Superscript size={25} />} />
-              <BlockButton
-                format="code-block"
-                icon={<CodeSquare size={25} />}
-              />
-              <BlockButton format="heading-one" icon={<LooksOne size={25} />} />
-              <BlockButton format="heading-two" icon={<LooksTwo size={25} />} />
-              <BlockButton format="heading-three" icon={<Looks3 size={25} />} />
-              <BlockButton
-                format="block-quote"
-                icon={<FormatQuote size={25} />}
-              />
-              <BlockButton
-                format="numbered-list"
-                icon={<FormatListNumbered size={25} />}
-              />
-              <BlockButton
-                format="bulleted-list"
-                icon={<FormatListBulleted size={25} />}
-              />
-              <BlockButton format="left" icon={<FormatAlignLeft size={25} />} />
-              <BlockButton
-                format="center"
-                icon={<FormatAlignCenter size={25} />}
-              />
-              <BlockButton
-                format="right"
-                icon={<FormatAlignRight size={25} />}
-              />
-              <BlockButton
-                format="justify"
-                icon={<FormatAlignJustify size={25} />}
-              />
+              {Feature.map((v) =>
+                v.button === "mark" ? (
+                  <MarkButton format={v.format} icon={v.icon} />
+                ) : (
+                  <BlockButton format={v.format} icon={v.icon} />
+                )
+              )}
             </Wrap>
             <Editable
               renderElement={renderElement}
