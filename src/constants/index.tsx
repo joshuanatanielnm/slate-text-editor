@@ -8,3 +8,9 @@ export const HOTKEYS = {
   "mod+u": "underline",
   "mod+`": "code",
 };
+export const INITIAL_VALUE = [
+  {
+    type: "paragraph",
+    children: [{ text: "Welcome to this simple text editor", bold: true }],
+  },
+];
