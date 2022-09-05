@@ -1,18 +1,12 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useCallback, useMemo } from "react";
-import {
-  Editable,
-  withReact,
-  Slate,
-  RenderElementProps,
-  RenderLeafProps,
-} from "slate-react";
+import { useMemo } from "react";
+import { Editable, withReact, Slate } from "slate-react";
 import isHotkey from "is-hotkey";
 import { createEditor } from "slate";
 import { withHistory } from "slate-history";
 import { BlockButton, Element, Leaf, MarkButton } from "../ui";
-import { HOTKEYS } from "../constants";
+import { HOTKEYS, INITIAL_VALUE } from "../constants";
 import { toggleMark } from "../utlis";
 import { Container, Heading, Text, VStack, Wrap } from "@chakra-ui/react";
 import { Feature } from "../constants";
@@ -22,23 +16,7 @@ type DynamicType = {
 };
 
 const Home: NextPage = () => {
-  const renderElement = useCallback(
-    (props: RenderElementProps) => <Element {...props} />,
-    []
-  );
-  const renderLeaf = useCallback(
-    (props: RenderLeafProps) => <Leaf {...props} />,
-    []
-  );
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
-
-  const initialValue: any[] = [
-    {
-      type: "paragraph",
-      children: [{ text: "Welcome to this simple text editor", bold: true }],
-    },
-  ];
-
   return (
     <div>
       <Head>
@@ -52,7 +30,7 @@ const Home: NextPage = () => {
             <Heading>Joshua - SlateJS Exploration</Heading>
             <Text>A rich text editor based on SlateJS</Text>
           </VStack>
-          <Slate editor={editor} value={initialValue}>
+          <Slate editor={editor} value={INITIAL_VALUE}>
             <Wrap
               borderBottom="2px solid"
               borderColor="#CCCCCC"
@@ -62,15 +40,15 @@ const Home: NextPage = () => {
             >
               {Feature.map((v) =>
                 v.button === "mark" ? (
-                  <MarkButton format={v.format} icon={v.icon} />
+                  <MarkButton format={v.format} icon={v.icon} key={v.format} />
                 ) : (
-                  <BlockButton format={v.format} icon={v.icon} />
+                  <BlockButton format={v.format} icon={v.icon} key={v.format} />
                 )
               )}
             </Wrap>
             <Editable
-              renderElement={renderElement}
-              renderLeaf={renderLeaf}
+              renderElement={Element}
+              renderLeaf={Leaf}
               placeholder="Enter some rich text…"
               spellCheck
               autoFocus
